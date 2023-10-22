@@ -69,9 +69,45 @@ export default {
   },
   mounted() {
     console.debug({ env: window.env })
-    fetch(`${window.env.API}/items`)
+    fetch(`https://bigorange.cloud/updates/api/items`)
       .then(response => response.json())
       .then(items => (this.items = items))
+      .catch(() => (this.items = [
+    {
+        "link": "https://awsapichanges.info/archive/changes/1792dd-omics.html",
+        "publishedAt": "2023-10-05T18:26:21.000Z",
+        "source": "API Changes",
+        "title": "Amazon Omics - 2 updated methods",
+        "type": "api"
+    },
+    {
+        "link": "https://awsapichanges.info/archive/changes/50ae5b-xray.html",
+        "publishedAt": "2023-10-16T18:27:26.000Z",
+        "source": "API Changes",
+        "title": "AWS X-Ray - 1 updated methods",
+        "type": "api"
+    },
+    {
+        "link": "https://awsapichanges.info/archive/changes/c2079e-ec2.html",
+        "publishedAt": "2023-10-02T18:24:25.000Z",
+        "source": "API Changes",
+        "title": "Amazon Elastic Compute Cloud - 24 updated methods",
+        "type": "api"
+    },
+    {
+        "link": "https://awsapichanges.info/archive/changes/c2079e-rds.html",
+        "publishedAt": "2023-10-02T18:24:25.000Z",
+        "source": "API Changes",
+        "title": "Amazon Relational Database Service - 1 updated methods",
+        "type": "api"
+    },
+    {
+        "link": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html",
+        "publishedAt": "2023-09-28T19:00:00.000Z",
+        "source": "AWS CloudFormation Release Notes",
+        "title": "Updated resource",
+        "type": "status"
+    }]))
 
     this.lastVisit = localStorage.getItem('lastVisit')
     console.debug('lastVisit', this.lastVisit)

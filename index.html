@@ -5,24 +5,13 @@
     <meta http-equiv="refresh" content="1800">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="icon" href="favicon.ico">
+    <title>Title</title>
   </head>
   <body>
     <div id="app"></div>
-    <% if (NODE_ENV !== 'development') { %>
-    <script>
-      env = {
-        API: 'INSERT_API',
-      }
-    </script></script>
-    <% } else { %>
-    <script>
-      env = {
-        API: '<%= process.env.VUE_APP_API %>',
-      }
-    </script></script>
-    <% } %>
+    <script type="module" src="/src/main.ts"></script>
+
     <!-- built files will be auto injected -->
 
 		<!-- GitHub Corners https://github.com/tholman/github-corners -->
