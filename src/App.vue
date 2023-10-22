@@ -1,17 +1,16 @@
 <template>
-  <div id="app">
-    <div class="text-2xl px-4 pt-1">
+    <div class="text-2xl px-4 pt-1 text-black dark:text-gray-100">
       <a href="https://bigorange.cloud/updates">
-        Big<span class="-lg text-orange-500">Orange</span>.Cloud/Updates</a
+        Big<span class="-lg text-orange-500 dark:text-orange-500">Orange</span>.Cloud/Updates</a
       >
     </div>
     <div class="">
       <div v-for="item in groupedItems" :key="item.id" class="px-3 py-1">
-        <div v-if="item.title" :class="{ 'font-bold': item.isNew }">
+        <div v-if="item.title" :class="{ 'font-bold': item.isNew }" class="dark:text-gray-200">
           <a :href="item.link" target="_blank" class="text-lg">
             {{ item.title }}
           </a>
-          <span class="text-sm px-2 font-thin text-gray-500">
+          <span class="text-sm px-2 font-thin text-gray-500 dark:text-gray-200">
             {{ item.source }}
           </span>
         </div>
@@ -22,10 +21,26 @@
         </div>
       </div>
     </div>
-  </div>
+    <DarkModeToggle class="fixed bottom-0 right-2"/>
+     <GitHubCorner />
 </template>
 
+<script setup>
+  import { useDark, useToggle } from '@vueuse/core'
+import { computed } from 'vue';
+import useDarkModeStore from './darkModeStore'
+
+const darkModeStore = useDarkModeStore();
+const isDark = computed(() => darkModeStore.mode === 'dark');
+
+//const isDark = useDark()
+const toggleDark = useToggle(isDark)
+</script>
+
 <script>
+import DarkModeToggle from './darkModeToggle.vue';
+import GitHubCorner from './githubCorner.vue'
+
 export default {
   name: 'App',
   data() {
@@ -34,7 +49,10 @@ export default {
       items: [],
     }
   },
-  components: {},
+  components: {
+    DarkModeToggle,
+    GitHubCorner,
+  },
   watch: {
     items(val) {
       console.debug(`${val.length} items recieved`)
